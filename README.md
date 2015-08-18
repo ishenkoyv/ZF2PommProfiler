@@ -1,1 +1,1 @@
-# ZF2PommProfiler
+# ZF2Generic

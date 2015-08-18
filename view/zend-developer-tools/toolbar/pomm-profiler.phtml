@@ -1,0 +1,46 @@
+<?php
+  $data = $collector->getData();
+?>
+<div class="zdt-toolbar-entry">
+  <div class="zdt-toolbar-preview">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAdCAYAAABWk2cPAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wUWDTYQDl2RKwAABKJJREFUSMe9l19MU1cYwH/n3DvqH4RoR+Y6dSKCJG7JhPgiYMsSsuzBF+Y2G5dMHHbgw2LCA/Kw6INmjz42gz4tS+bTBobFZMaJI5FE0y7EhFFN11oHFrOWPyVgub337GG0K7TFajK/5Oaem+8755fvO+f7zncFJUh3dzderxeAM2fOIIRYo+/v7wfA4/FkxxuJ2EjpdDq5ffs2AHV1dRw5coSysrKi9qXCC0JbWlrQdZ1bt24BcPToUdrb24lGo8zPzyOlzPN2PbirqwvTNBkYGHg+1OVyMTIykh0DKKXo6enBbrdz9+7dN5VSnwOvA99OTk4+fFGvRSFYa2srSqmskVIKj8dTPjc31zE/P++x2WzvrKqiwA/AlWAwOFMqXHM6nTx69IhIJLLGu4wcOnRISilbt27d+v25c+e+WFxctD958kQAQkpZCTQBH1VVVcX27dsXmpqaSufOb2xsxO/34/f7swdRq6mpIRwO43Q6qa6uzhrv2rVLLy8vfzeZTH6jlLpSUVHhcLlcZm1trWhubramp6fV7OysUEoJKeV24ONUKvVeVVXVjN1uj8Xj8XQuOANvbGz8N7zrvdu5c2cd0A24gTcA6uvrzQsXLgBogALU0tKSdfXqVfH48WNt27ZtmekLwBDgDQaDY7lbBDAwMIBcvwcOh6MN+BX4KgMscurlli1b9NOnT4sTJ06sLCwsZA5BBfAZ8HNtbW03gGVZKKWy4DyoZVlvA28V0hUReeDAgbKLFy+m9+zZYwohFGCZprldKbXfNM38CQUWsXg5ee348eOira3NMAxD/OdD/nL6i648NjaWrVIHDx7k2LFja8LucDjk8ypdqSHEMAwCgQB+vx9d17HZbExMTNDX17fGLje/i0nJntpsNhoaGmhoaGBycpLBwUGCwWBJkJf2NHdv6uvrOX/+PIcPH+bp06f/H7SQnD17lmvXrr1aKICu668MqgBz9f3qoENDQwaQfhlwHlRKGV69sjbsONLptN7X16cPDw+bgJEpKkKITJ7OCSGCJUETicSolLIV6AeWinkqpVQ7duzg/v370uPxCK/XawHCMAwT+EkI8f7c3Nx3JUGfPXuWnp6e/jMWi30JfAiMAqliVUbXdaSU4saNG7jd7j8ePHjwSW9vb7vb7f5dCLHywnsai8V+0zTtA8CzadMm/+q1tj5/pZTy4ebNm3tnZmaad+/ePQigaVrRdbVMmxKJRNi7d2+eQTKZTCeTyfGTJ0/+WF1d/XDVe31iYkKbnZ0VQoivU6lUTzwe/yUejy+Pj49ni0k4HCaRSKBpGj6fj0AgQGdnJ1okEsHlchGJRLJPIXhTU9NyTU1NALgC7J+amvo7Go22hEKh4ZWVlQWlFMvLyyQSCe7du0cqlcLhcHD58mUCgQAAnZ2d+Hy+f8O7vvvLfBcp5IvAp5ZluUKh0F/r9bquY1kWly5doqurKwsD8Pl8+QU/F547tiyLysrK4kmrFFJKlFIIIRgdHV0zNwPb8JYZGRnB6XSi6zo3b95ECEFOD1Q44aXEMAzu3LmT/TsoFLGSJLdpy+11rl+/zqlTp+jo6MiGLwN7nvwDXq0ZZ/igXGcAAAAASUVORK5CYII=" alt="Pomm Profiler"/>
+    <span class="zdt-toolbar-info"> 
+      <?= count($data['queries']) ?> in <?= $data['time'] ?> ms
+    </span>
+  </div>
+
+  <?php if (empty($data['queries'])) { ?>
+  <div class="zdt-toolbar-detail">
+    <span class="zdt-toolbar-info zdt-toolbar-info-heading">
+      No queries
+    </span>
+  </div>
+  <?php } else { ?>
+  <div class="zdt-toolbar-detail">
+    <div class="zdt-toolbar-detail-inner">
+      <span class="zdt-toolbar-info zdt-toolbar-dbquery">
+    <?php foreach ($data['queries'] as $query) { ?>
+        <hr/>
+        <span class="zdt-detail-label">SQL</span>
+        <span class="zdt-detail-value zdt-detail-dbquery zdt-detail-dbquery-sql">
+          <?= $query['sql'] ?>
+        </span>
+
+        <span class="clear"></span>
+
+        <span class="zdt-detail-label">Time</span>
+        <span class="zdt-detail-value zdt-detail-dbquery zdt-detail-dbquery-time"> <?= $query['time_ms'] ?> ms </span>
+
+        <span class="clear"></span>
+
+        <span class="zdt-detail-label">Count</span>
+        <span class="zdt-detail-value zdt-detail-dbquery zdt-detail-dbquery-time"> <?= $query['result_count'] ?> </span>
+
+        <span class="clear"></span>
+    <?php } ?>
+        <hr/>
+      </span>
+    </div>
+  </div>
+  <?php } ?>
+</div>
