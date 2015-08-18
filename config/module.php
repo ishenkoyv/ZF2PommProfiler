@@ -3,10 +3,10 @@
 return array(
     'service_manager' => array(
         'factories' => array(
-            'PommProfiler\\ServiceManager\\PommProfiler' => 'PommProfiler\\ServiceManager\\PommProfiler',
+            'IyvZF2PommProfiler\\ServiceManager\\PommProfiler' => 'IyvZF2PommProfiler\\ServiceManager\\PommProfiler',
         ),
         'aliases' => array(
-            'pommProfiler' => 'PommProfiler\\ServiceManager\\PommProfiler',
+            'pommProfiler' => 'IyvZF2PommProfiler\\ServiceManager\\PommProfiler',
         ),
     ),
     'view_manager' => array(
@@ -19,7 +19,7 @@ return array(
    'zenddevelopertools' => array(
         'profiler' => array(
             'collectors' => array(
-                'pomm_profiler' => 'PommProfiler\\ServiceManager\\PommProfiler',
+                'pomm_profiler' => 'IyvZF2PommProfiler\\ServiceManager\\PommProfiler',
             ),
         ),
         'toolbar' => array(
